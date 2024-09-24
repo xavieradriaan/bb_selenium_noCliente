@@ -48,8 +48,6 @@ public class Utils {
                 String base64Image = encodeImageToBase64(imagePath);
                 String replacement = "src=\"data:image/png;base64," + base64Image + "\"";
                 htmlContent = htmlContent.replace(matcher.group(0), replacement);
-                System.out.println(htmlContent);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
