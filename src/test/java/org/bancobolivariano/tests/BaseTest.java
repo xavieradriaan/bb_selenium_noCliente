@@ -17,8 +17,8 @@ public class BaseTest {
         driver = WebDriverManager.getChromeDriver();
         driver.manage().window().maximize();
         context.setAttribute("WebDriver", driver);
-        Map<Integer, Map<String, String>> fileData = FileUtils.readFileXls(System.getProperty("user.dir") + "/src/test/resources/data/data.xlsx", 0);
-        DataStore.getInstance().setFileData(fileData);
+        //Map<Integer, Map<String, String>> fileData = FileUtils.readFileXls(System.getProperty("user.dir") + "/src/test/resources/data/data.xlsx", 0);
+        //DataStore.getInstance().setFileData(fileData);
     }
 
     @AfterClass

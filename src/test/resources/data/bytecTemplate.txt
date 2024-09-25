@@ -1,0 +1,11 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:man="http://otp.bolivariano.com.ec/manager">
+<soapenv:Header/>
+<soapenv:Body>
+<man:GenerarOTP>
+<man:idCliente>${cedula}</man:idCliente>
+<man:tipoTransaccion>Registro</man:tipoTransaccion>
+<man:aplicacionSolicitante>QUICKPAYMENT</man:aplicacionSolicitante>
+<man:timestamp>0</man:timestamp>
+</man:GenerarOTP>
+</soapenv:Body>
+</soapenv:Envelope>

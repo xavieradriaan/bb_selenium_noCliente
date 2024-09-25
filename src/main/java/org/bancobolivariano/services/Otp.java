@@ -1,6 +1,8 @@
 package org.bancobolivariano.services;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
@@ -21,11 +23,11 @@ public class Otp {
         if ("Entrust".equalsIgnoreCase(type)) {
             url = "https://soavides.bolivariano.fin.ec:5554/EntrustUtil/proxy/EntrustUtilProxyMS";
             soapAction = "http://service.wsentrust.ec.fin.bolivariano/EntrustServicePortType/getOTP";
-            mensajeTemplate = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:ser=\"http://service.wsentrust.ec.fin.bolivariano/\">\r\n<soap:Header/>\r\n<soap:Body>\r\n<ser:getOTP>\r\n<!--Optional:-->\r\n<userId>${cedula}</userId>\r\n</ser:getOTP>\r\n</soap:Body>\r\n</soap:Envelope>\r\n";
+            mensajeTemplate = new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir") + "/src/test/resources/data/entrustTemplate.txt")));
         } else if ("Bytec".equalsIgnoreCase(type)) {
             url = "https://qckpayotpdesrv:3030/ServiceOTP.svc";
             soapAction = "http://otp.bolivariano.com.ec/manager/OTPManager/GenerarOTP";
-            mensajeTemplate = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:man=\"http://otp.bolivariano.com.ec/manager\">\r\n<soapenv:Header/>\r\n<soapenv:Body>\r\n<man:GenerarOTP>\r\n<man:idCliente>${cedula}</man:idCliente>\r\n<man:tipoTransaccion>Registro</man:tipoTransaccion>\r\n<man:aplicacionSolicitante>QUICKPAYMENT</man:aplicacionSolicitante>\r\n<man:timestamp>0</man:timestamp>\r\n</man:GenerarOTP>\r\n</soapenv:Body>\r\n</soapenv:Envelope>\r\n";
+            mensajeTemplate = new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir") + "/src/test/resources/data/bytecTemplate.txt")));
         } else {
             throw new IllegalArgumentException("Invalid OTP type");
         }
