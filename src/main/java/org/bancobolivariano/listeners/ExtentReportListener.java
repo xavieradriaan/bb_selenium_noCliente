@@ -3,14 +3,11 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import org.bancobolivariano.utils.Utils;
+import org.bancobolivariano.utils.ScreenshotUtils;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 
 public class ExtentReportListener implements ITestListener {
@@ -54,7 +51,7 @@ public class ExtentReportListener implements ITestListener {
         extent.flush();
         try {
             String htmlFilePath = "target/ReportTest.html";
-            Utils.embedImagesInHtml(htmlFilePath);
+            ScreenshotUtils.embedImagesInHtml(htmlFilePath);
         } catch (Exception e) {
             e.printStackTrace();
         }

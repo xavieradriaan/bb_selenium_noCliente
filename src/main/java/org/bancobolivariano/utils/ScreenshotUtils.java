@@ -17,7 +17,7 @@ import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Utils {
+public class ScreenshotUtils {
 
     public static void addScreenshotToReport(WebDriver driver, String screenshotName) {
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -64,4 +64,5 @@ public class Utils {
             return Base64.getEncoder().encodeToString(imageData);
         }
     }
+
 }

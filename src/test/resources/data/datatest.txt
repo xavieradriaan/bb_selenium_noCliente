@@ -1,0 +1,6 @@
+Map<String, String> rowData = DataStore.getInstance().getRowData(1);
+System.out.println("Identificacion: " + rowData.get("Identificacion"));
+String otpEntrust = Otp.getOtp("0916283500", "Entrust");
+System.out.println("OTP ENTRUST: "+ otpEntrust);
+String otpBytec = Otp.getOtp("0915047104", "Bytec");
+System.out.println("\nOTP BYTEC: "+ otpBytec);
