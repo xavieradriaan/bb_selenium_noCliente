@@ -4,3 +4,11 @@ String otpEntrust = Otp.getOtp("0916283500", "Entrust");
 System.out.println("OTP ENTRUST: "+ otpEntrust);
 String otpBytec = Otp.getOtp("0915047104", "Bytec");
 System.out.println("\nOTP BYTEC: "+ otpBytec);
+
+
+        try {
+            /*String htmlFilePath = "target/ReportTest.html";
+            ScreenshotUtils.embedImagesInHtml(htmlFilePath);*/
+        } catch (Exception e) {
+            e.printStackTrace();
+        }

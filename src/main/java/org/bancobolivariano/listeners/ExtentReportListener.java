@@ -17,7 +17,7 @@ public class ExtentReportListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-        ExtentSparkReporter sparkReporter = new ExtentSparkReporter("target/ReportTest.html");
+        ExtentSparkReporter sparkReporter = new ExtentSparkReporter("target/report.html");
         sparkReporter.config().setDocumentTitle("Test Report");
         sparkReporter.config().setReportName("Test Execution Report");
 
@@ -49,12 +49,6 @@ public class ExtentReportListener implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         extent.flush();
-        try {
-            String htmlFilePath = "target/ReportTest.html";
-            ScreenshotUtils.embedImagesInHtml(htmlFilePath);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public static ExtentTest getTest() {

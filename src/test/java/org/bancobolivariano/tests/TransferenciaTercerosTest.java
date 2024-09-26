@@ -1,6 +1,4 @@
 package org.bancobolivariano.tests;
-import org.bancobolivariano.services.Otp;
-import org.bancobolivariano.utils.DataStore;
 import org.bancobolivariano.utils.LocatorType;
 import org.bancobolivariano.utils.ScreenshotUtils;
 import org.bancobolivariano.utils.WebDriverUtils;
@@ -8,10 +6,9 @@ import org.bancobolivariano.utils.WebDriverUtils;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.Map;
 
 
-public class TransferenciaTerceros extends LoginTest {
+public class TransferenciaTercerosTest extends LoginTest {
 
     @Test
     public void transferenciaTerceros() throws IOException{
