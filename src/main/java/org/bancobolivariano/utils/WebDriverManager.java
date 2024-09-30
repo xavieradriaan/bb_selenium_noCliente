@@ -20,8 +20,8 @@ public class WebDriverManager {
 
     public static ChromeOptions getOptions() {
         ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--headless");
-        //options.addArguments("--disable-gpu");
+        options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
         options.addArguments("--disable-web-security");
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--allow-running-insecure-content");
