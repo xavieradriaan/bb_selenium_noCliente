@@ -1,32 +1,39 @@
 package org.bancobolivariano.tests;
 
-import org.bancobolivariano.utils.*;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import java.io.IOException;
-import java.util.Map;
 
 public class BaseTest {
     protected WebDriver driver;
 
     @BeforeClass
     public void setUp(ITestContext context) throws IOException {
-        driver = WebDriverManager.getChromeDriver();
+        // Configura WebDriverManager para manejar el driver de Chrome
+        WebDriverManager.chromedriver().setup();
+
+        // Configura las opciones de Chrome
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*"); // Permitir todas las conexiones remotas
+        options.addArguments("--disable-extensions"); // Deshabilitar extensiones
+        options.addArguments("--disable-gpu"); // Deshabilitar GPU
+        options.addArguments("--no-sandbox"); // No usar sandbox
+        options.addArguments("--disable-dev-shm-usage"); // Deshabilitar uso de /dev/shm
+
+        // Inicializa el driver de Chrome con las opciones configuradas
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         context.setAttribute("WebDriver", driver);
-        //Map<Integer, Map<String, String>> fileData = FileUtils.readFileXls(System.getProperty("user.dir") + "/src/test/resources/data/data.xlsx", 0);
-        //DataStore.getInstance().setFileData(fileData);
     }
 
     @AfterClass
     public void tearDown() {
-        WebDriverUtils.getElementAndClick(driver, LocatorType.XPATH, "//*[@id=\"menuMiPerfil\"]");
-        ScreenshotUtils.addScreenshotToReport(driver,"ProfileMenu");
-        WebDriverUtils.getElementAndClick(driver, LocatorType.XPATH, "//*[@id=\"menuOperador\"]/li[7]/a");
-        ScreenshotUtils.addScreenshotToReport(driver,"AfterLogout");
         if (driver != null) {
             driver.quit();
         }
