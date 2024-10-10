@@ -28,5 +28,6 @@ public class LoginTest extends BaseTest {
         WebDriverUtils.getElementAndClick(driver, LocatorType.XPATH, "//*[@id=\"btnContinuar\"]");
         WebDriverUtils.getElementAndClick(driver, LocatorType.XPATH, "//*[@id=\"btnContinuar\"]");
         ScreenshotUtils.addScreenshotToReport(driver, "AfterLogin");
+        ScreenshotUtils.addScreenshotToReport(driver, "AfterLogin1");
     }
 }
