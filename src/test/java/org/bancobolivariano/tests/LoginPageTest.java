@@ -19,7 +19,7 @@ public class LoginPageTest extends BaseTest {
 
     @Test
     public void logIn() {
-        driver.get("https://tarjetacredito.pre.cuentafuturo.com");
+        driver.get("https://tarjetacredito.dev.cuentafuturo.com");
         ScreenshotUtils.addScreenshotToReport(driver, "LoginPage");
 
         // Wait until the button is present and then click it
