@@ -22,18 +22,18 @@ public class LoginPageTest extends BaseTest {
         driver.get("https://tarjetacredito.dev.cuentafuturo.com");
         ScreenshotUtils.addScreenshotToReport(driver, "LoginPage");
 
-        // Wait until the button is present and then click it
+        // 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement startButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"__next\"]/main/div/div/div[2]/div/div[2]/div/button")));
         startButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "LoginPage-Start");
 
-        // Fill in the "cedula de indentidad"
+        //      "cedula de indentidad"
         WebElement cedulaField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"cid\"]")));
         cedulaField.sendKeys("1201530720");
         ScreenshotUtils.addScreenshotToReport(driver, "CedulaFilled");
 
-        // Fill in the "código dactilar"
+        //      "código dactilar"
         WebElement codigoDactilarField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"fingerPrint\"]")));
         codigoDactilarField.sendKeys("G2345K0923");
         ScreenshotUtils.addScreenshotToReport(driver, "CodigoDactilarFilled");
@@ -43,11 +43,11 @@ public class LoginPageTest extends BaseTest {
         politicasPrivacidadLink.click();
         ScreenshotUtils.addScreenshotToReport(driver, "PoliticasPrivacidadOpened");
 
-        // Scroll down to the bottom of the privacy policy
-        WebDriverUtils.moveY(driver, 1000); // Adjust the value as needed
+        // Scroll down t
+        WebDriverUtils.moveY(driver, 1000); // Adjust    value as needed
         ScreenshotUtils.addScreenshotToReport(driver, "PoliticasPrivacidadScrolled");
 
-        // Exit the privacy policy
+        // Exit    privacy policy
         WebElement exitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='bb-button bb-button--icon p-button p-component']//div//*[name()='svg']")));
         exitButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "PoliticasPrivacidadClosed");
@@ -60,12 +60,12 @@ public class LoginPageTest extends BaseTest {
         button.click();
         ScreenshotUtils.addScreenshotToReport(driver, "BotonSubmit");
 
-        // Fill in the "phone"
+        //      "teléfono"
         WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='phone']")));
         phoneField.sendKeys("0994876568");
         ScreenshotUtils.addScreenshotToReport(driver, "PhoneFilled");
       
-        // Fill in the "email"
+        //      "email"
         WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='email']")));
         emailField.sendKeys("xandrado@bolivariano.com");
         ScreenshotUtils.addScreenshotToReport(driver, "EmailFilled");
