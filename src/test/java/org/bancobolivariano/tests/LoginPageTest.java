@@ -19,7 +19,7 @@ public class LoginPageTest extends BaseTest {
 
     @Test
     public void logIn() {
-        driver.get("https://tarjetacredito.dev.cuentafuturo.com");
+        driver.get("https://tarjetacredito.pre.cuentafuturo.com");
         ScreenshotUtils.addScreenshotToReport(driver, "LoginPage");
 
         // Wait until the button is present and then click it
@@ -30,7 +30,7 @@ public class LoginPageTest extends BaseTest {
 
         // Fill in the "cedula de indentidad"
         WebElement cedulaField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"cid\"]")));
-        cedulaField.sendKeys("0916222540");
+        cedulaField.sendKeys("1201530720");
         ScreenshotUtils.addScreenshotToReport(driver, "CedulaFilled");
 
         // Fill in the "código dactilar"
