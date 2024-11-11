@@ -30,7 +30,7 @@ public class LoginPageTest extends BaseTest {
 
         //      "cedula de indentidad"
         WebElement cedulaField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"cid\"]")));
-        cedulaField.sendKeys("1201530720");
+        cedulaField.sendKeys("1707025779");
         ScreenshotUtils.addScreenshotToReport(driver, "CedulaFilled");
 
         //      "código dactilar"
@@ -60,9 +60,15 @@ public class LoginPageTest extends BaseTest {
         button.click();
         ScreenshotUtils.addScreenshotToReport(driver, "BotonSubmit");
 
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         //      "teléfono"
         WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='phone']")));
-        phoneField.sendKeys("0994876568");
+        phoneField.sendKeys("0900635019");
         ScreenshotUtils.addScreenshotToReport(driver, "PhoneFilled");
       
         //      "email"

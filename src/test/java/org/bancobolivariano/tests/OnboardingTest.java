@@ -316,28 +316,26 @@ public class OnboardingTest extends BaseTest {
         Thread.sleep(2200);
     }
 
-    /*  
-    parece que no sirve
-    private void submitForm() {
-        System.out.println("Haciendo clic en el botón de submit...");
-        WebElement submitButton = driver.findElement(By.cssSelector(".bb-button--primary > .button__label"));
-        submitButton.click();
-    }
-
-    */
 
     private void cuentaDeAhorros() throws InterruptedException {
         System.out.println("Iniciando sección: Cuenta de ahorros");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement accountTypeElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"btn-back\"]")));
-        accountTypeElement.click();
-        ScreenshotUtils.addScreenshotToReport(driver, "CuenteDeAhorrosFilled");
-
+    
+        // Esperar hasta que el checkbox sea visible y clicable
+        WebElement checkboxElement10 = driver.findElement(By.xpath("//div[@id='__next']/main/div/section/section/div/div/input"));
+        checkboxElement10.click();
+        Thread.sleep(2200);
+        ScreenshotUtils.addScreenshotToReport(driver, "CheckboxClicked");
+    
+        // Esperar hasta que el botón de continuar sea visible y clicable
+        WebElement continueButtonElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#btn-continue > .button__label")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueButtonElement);
+        ScreenshotUtils.addScreenshotToReport(driver, "ContinueButtonClicked");
     }
 
+
+
     //falta código OTP
-
-
 
     private void ingresaTuCodigoOTP() throws InterruptedException {
         // Agrega tiempo hasta que aparezca el OTP
@@ -352,17 +350,17 @@ public class OnboardingTest extends BaseTest {
         ScreenshotUtils.addScreenshotToReport(driver, "OTPFieldFilled");
         Thread.sleep(300000);
 
-        // FALTA QUE ME PERMITA INGRESAR A MI EL CÓDIGO OTP
-
+    
         WebElement imgElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("img:nth-child(4)")));
         imgElement.click();
-        Thread.sleep(2200);
+        ScreenshotUtils.addScreenshotToReport(driver, "imagenClicked33");
+        Thread.sleep(6400);
 
         WebElement obsElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='obs']")));
         obsElement.click();
         obsElement.sendKeys("Muy intuitivo");
         ScreenshotUtils.addScreenshotToReport(driver, "ObsFieldFilled2");
-        Thread.sleep(2200);
+        Thread.sleep(3200);
 
         WebElement approveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".Qualification_btnApprove__m0iEu")));
         approveButton.click();
