@@ -30,7 +30,7 @@ public class LoginPageTest extends BaseTest {
 
         //      "cedula de indentidad"
         WebElement cedulaField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"cid\"]")));
-        cedulaField.sendKeys("1707025779");
+        cedulaField.sendKeys("0602819476");
         ScreenshotUtils.addScreenshotToReport(driver, "CedulaFilled");
 
         //      "código dactilar"
@@ -48,8 +48,8 @@ public class LoginPageTest extends BaseTest {
         ScreenshotUtils.addScreenshotToReport(driver, "PoliticasPrivacidadScrolled");
 
         // Exit    privacy policy
-        WebElement exitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='bb-button bb-button--icon p-button p-component']//div//*[name()='svg']")));
-        exitButton.click();
+        WebElement submitButtonExit = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".lucide-x")));
+        submitButtonExit.click();
         ScreenshotUtils.addScreenshotToReport(driver, "PoliticasPrivacidadClosed");
 
         WebElement checkbox = driver.findElement(By.xpath("//input[@type='checkbox']"));
@@ -68,7 +68,7 @@ public class LoginPageTest extends BaseTest {
 
         //      "teléfono"
         WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='phone']")));
-        phoneField.sendKeys("0900635019");
+        phoneField.sendKeys("0903372732");
         ScreenshotUtils.addScreenshotToReport(driver, "PhoneFilled");
       
         //      "email"
@@ -77,7 +77,7 @@ public class LoginPageTest extends BaseTest {
         ScreenshotUtils.addScreenshotToReport(driver, "EmailFilled");
 
         // Hacer clic en el botón de submit
-        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bb-button--primary > .button__label")));
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         submitButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "SubmitClicked");
 

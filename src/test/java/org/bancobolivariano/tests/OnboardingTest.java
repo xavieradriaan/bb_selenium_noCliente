@@ -65,29 +65,30 @@ public class OnboardingTest extends BaseTest {
     private void ingresarDireccion() throws InterruptedException {
         System.out.println("Haciendo clic en el campo de dirección...");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bb-textarea-main:nth-child(1) .bb-textarea")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBTextArea-module__bb-textarea-main___-p2DP:nth-child(1) .BBTextArea-module__bb-textarea___a3huP")));
 
-        WebElement direccionField = driver.findElement(By.cssSelector(".bb-textarea-main:nth-child(1) .bb-textarea"));
+        WebElement direccionField = driver.findElement(By.cssSelector(".BBTextArea-module__bb-textarea-main___-p2DP:nth-child(1) .BBTextArea-module__bb-textarea___a3huP"));
         direccionField.click();
-        direccionField.sendKeys("Villa Club Etapa Jupiter Mz 12 Villa 84");
+        direccionField.sendKeys("Junín y Panamá Edificio XYZ Piso 8 Puerta E12");
         ScreenshotUtils.addScreenshotToReport(driver, "DireccionFilled");
         Thread.sleep(2200);
 
-        System.out.println("Haciendo clic en el botón de inicio...");
+        System.out.println("Ubica tu domicilio en el mapa...");
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#home-button-text")));
         WebElement homeButton = driver.findElement(By.cssSelector("#home-button-text"));
         homeButton.click();
         Thread.sleep(2200);
 
+
         System.out.println("Haciendo clic en el botón de autocompletar...");
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".autocomplete-control__wrapper__button")));
-        WebElement autocompleteButton = driver.findElement(By.cssSelector(".autocomplete-control__wrapper__button"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBGoogle-module__autocomplete-control__wrapper__button___9oxcY > .lucide")));
+        WebElement autocompleteButton = driver.findElement(By.cssSelector(".BBGoogle-module__autocomplete-control__wrapper__button___9oxcY > .lucide"));
         autocompleteButton.click();
         Thread.sleep(2200);
 
-        System.out.println("Haciendo clic en el botón principal...");
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bb-button--primary > .button__label")));
-        WebElement mainButton = driver.findElement(By.cssSelector(".bb-button--primary > .button__label"));
+        System.out.println("Haciendo clic en el botón de continuar...");
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
+        WebElement mainButton = driver.findElement(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf"));
         mainButton.click();
         Thread.sleep(2200);
 
@@ -117,13 +118,14 @@ public class OnboardingTest extends BaseTest {
         ScreenshotUtils.addScreenshotToReport(driver, "HomeAgeFilled");
         Thread.sleep(2200);
 
+
         System.out.println("Haciendo click en botón de continuar apenas entre a personalización de tarjeta");
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bb-button--primary > .button__label")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
 
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
         Thread.sleep(1000);
 
-        WebElement button = driver.findElement(By.cssSelector(".bb-button--primary > .button__label"));
+        WebElement button = driver.findElement(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
         System.out.println("Clic realizado en el botón de personalización de tarjeta");
         Thread.sleep(2200);
@@ -165,9 +167,10 @@ public class OnboardingTest extends BaseTest {
         ScreenshotUtils.addScreenshotToReport(driver, "PhoneNumberFilled");
         Thread.sleep(2200);
 
-        WebElement primaryButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bb-button--primary > .button__label")));
+        WebElement primaryButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         primaryButton2.click();
         Thread.sleep(2200);
+        ScreenshotUtils.addScreenshotToReport(driver, "botonSsiguiente");
     }
 
     private void ingresarDatosLaborales() throws InterruptedException {
@@ -178,7 +181,7 @@ public class OnboardingTest extends BaseTest {
         trabajadorIndependiente.click();
         Thread.sleep(2200);
 
-        WebElement jobAddressTextarea = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bb-textarea")));
+        WebElement jobAddressTextarea = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBTextArea-module__bb-textarea-main___-p2DP:nth-child(1) .BBTextArea-module__bb-textarea___a3huP")));
         jobAddressTextarea.click();
         jobAddressTextarea.sendKeys("Sauces 4");
         ScreenshotUtils.addScreenshotToReport(driver, "JobAddressFilled");
@@ -201,7 +204,7 @@ public class OnboardingTest extends BaseTest {
 
         //confirmar ubicación
         System.out.println("Buscando el botón de confirmar ubicación...");
-        WebElement button69 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bb-button--primary > .button__label")));
+        WebElement button69 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         button69.click();
         Thread.sleep(2200);
 
@@ -216,7 +219,7 @@ public class OnboardingTest extends BaseTest {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
         Thread.sleep(1000);
 
-        WebElement button0 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bb-button--primary > .button__label")));
+        WebElement button0 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         button0.click();
         System.out.println("Clic realizado en el botón de submit");
         Thread.sleep(2200);
@@ -231,21 +234,29 @@ public class OnboardingTest extends BaseTest {
         monthlyIncomeField.click();
         monthlyIncomeField.sendKeys("2000");
         ScreenshotUtils.addScreenshotToReport(driver, "MonthlyIncomeFilled");
-        Thread.sleep(2200);
+        Thread.sleep(4200);
+
+
+        //gastos mensuales
+        WebElement monthlyExpensesField2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='expenses']")));
+        monthlyExpensesField2.click();
+        monthlyExpensesField2.sendKeys("840");
+        ScreenshotUtils.addScreenshotToReport(driver, "GASTOS");
+        Thread.sleep(4200);
 
         //activos
-        WebElement monthlyExpensesField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[placeholder='Ej: $ 700.00']")));
+        WebElement monthlyExpensesField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#assets > input")));
         monthlyExpensesField.click();
         monthlyExpensesField.sendKeys("840");
         ScreenshotUtils.addScreenshotToReport(driver, "MonthlyExpensesFilled");
-        Thread.sleep(2200);
+        Thread.sleep(6200);
 
         //pasivos
-        WebElement savingsField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[placeholder='Ej: $ 250.00']")));
+        WebElement savingsField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#liabilities > input")));
         savingsField.click();
         savingsField.sendKeys("320");
         ScreenshotUtils.addScreenshotToReport(driver, "SavingsFilled");
-        Thread.sleep(2200);
+        Thread.sleep(4200);
 
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
         Thread.sleep(1000);
@@ -261,7 +272,7 @@ public class OnboardingTest extends BaseTest {
         System.out.println("Iniciando sección: Confirma tu residencia fiscal");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='bb-button bb-button--primary']")));
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='__next']/main/div/div[2]/div[2]/button[2]/div")));
         submitButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "ResidenciaFiscalFilled");
         Thread.sleep(2200);
@@ -273,7 +284,7 @@ public class OnboardingTest extends BaseTest {
         Thread.sleep(1000);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bb-button.bb-button--primary")));
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         submitButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "DondeRecibirTarjetaFilled");
         Thread.sleep(2200);
@@ -288,7 +299,7 @@ public class OnboardingTest extends BaseTest {
         Thread.sleep(1000);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bb-button.bb-button--primary")));
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         submitButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "ConfirmaSolicitudFilled");
         Thread.sleep(2200);
@@ -328,7 +339,7 @@ public class OnboardingTest extends BaseTest {
         ScreenshotUtils.addScreenshotToReport(driver, "CheckboxClicked");
     
         // Esperar hasta que el botón de continuar sea visible y clicable
-        WebElement continueButtonElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#btn-continue > .button__label")));
+        WebElement continueButtonElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#btn-continue > .BBButton-module__button__label___-dURf")));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueButtonElement);
         ScreenshotUtils.addScreenshotToReport(driver, "ContinueButtonClicked");
     }
