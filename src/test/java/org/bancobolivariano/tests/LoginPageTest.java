@@ -28,13 +28,20 @@ public class LoginPageTest extends BaseTest {
         startButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "LoginPage-Start");
 
-        //      "cedula de indentidad"
+        // "cedula de indentidad"
         WebElement cedulaField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"cid\"]")));
-        cedulaField.sendKeys("0602819476");
+        // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
+        JavascriptExecutor js2 = (JavascriptExecutor) driver;
+        js2.executeScript("arguments[0].style.fontWeight = 'bold';", cedulaField);
+
+        cedulaField.sendKeys("1711586873");
         ScreenshotUtils.addScreenshotToReport(driver, "CedulaFilled");
+
 
         //      "código dactilar"
         WebElement codigoDactilarField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"fingerPrint\"]")));
+        JavascriptExecutor js3 = (JavascriptExecutor) driver;
+        js3.executeScript("arguments[0].style.fontWeight = 'bold';", codigoDactilarField);
         codigoDactilarField.sendKeys("G2345K0923");
         ScreenshotUtils.addScreenshotToReport(driver, "CodigoDactilarFilled");
 
@@ -43,7 +50,7 @@ public class LoginPageTest extends BaseTest {
         politicasPrivacidadLink.click();
         ScreenshotUtils.addScreenshotToReport(driver, "PoliticasPrivacidadOpened");
 
-        // Scroll down t
+        // Scroll down 
         WebDriverUtils.moveY(driver, 1000); // Adjust    value as needed
         ScreenshotUtils.addScreenshotToReport(driver, "PoliticasPrivacidadScrolled");
 
@@ -66,13 +73,20 @@ public class LoginPageTest extends BaseTest {
             e.printStackTrace();
         }
 
-        //      "teléfono"
+        // "teléfono"
         WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='phone']")));
-        phoneField.sendKeys("0903372732");
+
+        // Aplicar formato en negrita usando JavaScript
+        JavascriptExecutor js4 = (JavascriptExecutor) driver;
+        js4.executeScript("arguments[0].style.fontWeight = 'bold';", phoneField);
+        phoneField.sendKeys("0911672178");
         ScreenshotUtils.addScreenshotToReport(driver, "PhoneFilled");
-      
+        
         //      "email"
         WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='email']")));
+        // Aplicar formato en negrita usando JavaScript 
+        JavascriptExecutor js5 = (JavascriptExecutor) driver;
+        js5.executeScript("arguments[0].style.fontWeight = 'bold';", emailField);
         emailField.sendKeys("xandrado@bolivariano.com");
         ScreenshotUtils.addScreenshotToReport(driver, "EmailFilled");
 
