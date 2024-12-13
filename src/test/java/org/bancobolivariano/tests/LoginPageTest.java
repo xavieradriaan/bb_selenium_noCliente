@@ -30,18 +30,18 @@ public class LoginPageTest extends BaseTest {
 
         // "cedula de indentidad"
         WebElement cedulaField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"cid\"]")));
-        // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
+        // Aplicar formato en negrita y cursiva usando JavaScript antes de ingresar el texto
         JavascriptExecutor js2 = (JavascriptExecutor) driver;
-        js2.executeScript("arguments[0].style.fontWeight = 'bold';", cedulaField);
+        js2.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", cedulaField);
 
-        cedulaField.sendKeys("1711586873");
+        cedulaField.sendKeys("1715122881");
         ScreenshotUtils.addScreenshotToReport(driver, "CedulaFilled");
 
 
         //      "código dactilar"
         WebElement codigoDactilarField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"fingerPrint\"]")));
         JavascriptExecutor js3 = (JavascriptExecutor) driver;
-        js3.executeScript("arguments[0].style.fontWeight = 'bold';", codigoDactilarField);
+        js3.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", codigoDactilarField);
         codigoDactilarField.sendKeys("G2345K0923");
         ScreenshotUtils.addScreenshotToReport(driver, "CodigoDactilarFilled");
 
@@ -78,7 +78,7 @@ public class LoginPageTest extends BaseTest {
 
         // Aplicar formato en negrita usando JavaScript
         JavascriptExecutor js4 = (JavascriptExecutor) driver;
-        js4.executeScript("arguments[0].style.fontWeight = 'bold';", phoneField);
+        js4.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", phoneField);
         phoneField.sendKeys("0911672178");
         ScreenshotUtils.addScreenshotToReport(driver, "PhoneFilled");
         
@@ -86,7 +86,7 @@ public class LoginPageTest extends BaseTest {
         WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='email']")));
         // Aplicar formato en negrita usando JavaScript 
         JavascriptExecutor js5 = (JavascriptExecutor) driver;
-        js5.executeScript("arguments[0].style.fontWeight = 'bold';", emailField);
+        js5.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", emailField);
         emailField.sendKeys("xandrado@bolivariano.com");
         ScreenshotUtils.addScreenshotToReport(driver, "EmailFilled");
 

@@ -7,6 +7,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.openqa.selenium.safari.SafariDriver;
+
+import java.io.IOException;
+
 
 import java.io.IOException;
 import java.util.HashMap;

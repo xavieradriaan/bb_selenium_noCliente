@@ -76,13 +76,13 @@ public class OnboardingTest extends BaseTest {
         direccionField3.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js4 = (JavascriptExecutor) driver;
-        js4.executeScript("arguments[0].style.fontWeight = 'bold';", direccionField3);
+        js4.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", direccionField3);
                 
         direccionField3.sendKeys("Panama y Junin");
-        Thread.sleep(2200);
+        Thread.sleep(5000);
         direccionField3.sendKeys(Keys.ARROW_DOWN);
         direccionField3.sendKeys(Keys.ENTER);
-        Thread.sleep(4200);
+        Thread.sleep(5000);
         //hasta aquí todo ok
         WebElement direccionField4 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button___HYEkM.BBButton-module__bb-button--primary___2lC4N")));
         direccionField4.click();
@@ -94,7 +94,7 @@ public class OnboardingTest extends BaseTest {
         mainStreetField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js5 = (JavascriptExecutor) driver;
-        js5.executeScript("arguments[0].style.fontWeight = 'bold';", mainStreetField);
+        js5.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", mainStreetField);
                 
         mainStreetField.sendKeys("Panama");
         ScreenshotUtils.addScreenshotToReport(driver, "MainStreetFilled");
@@ -105,7 +105,7 @@ public class OnboardingTest extends BaseTest {
         secondaryStreetField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js6 = (JavascriptExecutor) driver;
-        js6.executeScript("arguments[0].style.fontWeight = 'bold';", secondaryStreetField);
+        js6.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", secondaryStreetField);
         secondaryStreetField.sendKeys("Junin");
         ScreenshotUtils.addScreenshotToReport(driver, "SecondaryStreetFilled");
 
@@ -117,7 +117,7 @@ public class OnboardingTest extends BaseTest {
         houseNumberField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js7 = (JavascriptExecutor) driver;
-        js7.executeScript("arguments[0].style.fontWeight = 'bold';", houseNumberField);
+        js7.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", houseNumberField);
                 
         houseNumberField.sendKeys("Mz 118 etapa L V 1");
 
@@ -131,8 +131,8 @@ public class OnboardingTest extends BaseTest {
         referenceField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js8 = (JavascriptExecutor) driver;
-        js8.executeScript("arguments[0].style.fontWeight = 'bold';", referenceField);
-        referenceField.sendKeys("Casa Dos pisos con Patio Frontal y dos perros pitbull albinos");
+        js8.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", referenceField);
+        referenceField.sendKeys("\"Casa grande blanca “Las Garzas”, por la cancha joga bonito, sector mitad del mundo (-0.0030924, -78.4467336)\"");
         ScreenshotUtils.addScreenshotToReport(driver, "ReferenceFilled");
         Thread.sleep(2200);
 
@@ -152,7 +152,7 @@ public class OnboardingTest extends BaseTest {
         homeAgeField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js9 = (JavascriptExecutor) driver;
-        js9.executeScript("arguments[0].style.fontWeight = 'bold';", homeAgeField);        
+        js9.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", homeAgeField);        
         homeAgeField.sendKeys("9");
         ScreenshotUtils.addScreenshotToReport(driver, "HomeAgeFilled");
         Thread.sleep(2200);
@@ -178,7 +178,7 @@ public class OnboardingTest extends BaseTest {
         namesField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js10 = (JavascriptExecutor) driver;
-        js10.executeScript("arguments[0].style.fontWeight = 'bold';", namesField);        
+        js10.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", namesField);        
         namesField.sendKeys("Xavier Adrián");
         ScreenshotUtils.addScreenshotToReport(driver, "NamesFilled");
         Thread.sleep(2200);
@@ -187,7 +187,7 @@ public class OnboardingTest extends BaseTest {
         fatherLastNameField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js11 = (JavascriptExecutor) driver;
-        js11.executeScript("arguments[0].style.fontWeight = 'bold';", fatherLastNameField);        
+        js11.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", fatherLastNameField);        
         fatherLastNameField.sendKeys("Andrade");
         ScreenshotUtils.addScreenshotToReport(driver, "FatherLastNameFilled");
         Thread.sleep(2200);
@@ -196,7 +196,7 @@ public class OnboardingTest extends BaseTest {
         motherLastNameField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js12 = (JavascriptExecutor) driver;
-        js12.executeScript("arguments[0].style.fontWeight = 'bold';", motherLastNameField);
+        js12.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", motherLastNameField);
         motherLastNameField.sendKeys("Ochoa");
         ScreenshotUtils.addScreenshotToReport(driver, "MotherLastNameFilled");
         Thread.sleep(2200);
@@ -208,7 +208,7 @@ public class OnboardingTest extends BaseTest {
         phoneNumberField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js13 = (JavascriptExecutor) driver;
-        js13.executeScript("arguments[0].style.fontWeight = 'bold';", phoneNumberField);
+        js13.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", phoneNumberField);
         phoneNumberField.sendKeys("0996768532");
         ScreenshotUtils.addScreenshotToReport(driver, "PhoneNumberFilled");
         Thread.sleep(2200);
@@ -237,7 +237,7 @@ public class OnboardingTest extends BaseTest {
         direccionField3.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js16 = (JavascriptExecutor) driver;
-        js16.executeScript("arguments[0].style.fontWeight = 'bold';", direccionField3);
+        js16.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", direccionField3);
                 
         direccionField3.sendKeys("Sauces 4");
         Thread.sleep(2200);
@@ -255,7 +255,7 @@ public class OnboardingTest extends BaseTest {
         calleprincipal.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js17 = (JavascriptExecutor) driver;
-        js17.executeScript("arguments[0].style.fontWeight = 'bold';", calleprincipal);
+        js17.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", calleprincipal);
                 
         calleprincipal.sendKeys("Sauces 4");
         ScreenshotUtils.addScreenshotToReport(driver, "CallePrincipalFilled");
@@ -264,7 +264,7 @@ public class OnboardingTest extends BaseTest {
         callesecundaria.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js18 = (JavascriptExecutor) driver;
-        js18.executeScript("arguments[0].style.fontWeight = 'bold';", callesecundaria);
+        js18.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", callesecundaria);
         callesecundaria.sendKeys("G. Plaza D");
         ScreenshotUtils.addScreenshotToReport(driver, "CalleSecundariaFilled");
 
@@ -272,7 +272,7 @@ public class OnboardingTest extends BaseTest {
         numeroOficina.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js19 = (JavascriptExecutor) driver;
-        js19.executeScript("arguments[0].style.fontWeight = 'bold';", numeroOficina);
+        js19.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", numeroOficina);
         numeroOficina.sendKeys(" Numero 22-56");
         ScreenshotUtils.addScreenshotToReport(driver, "NumeroOficinaFilled");
 
@@ -280,7 +280,7 @@ public class OnboardingTest extends BaseTest {
         referencia.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js20 = (JavascriptExecutor) driver;
-        js20.executeScript("arguments[0].style.fontWeight = 'bold';", referencia);
+        js20.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", referencia);
         referencia.sendKeys("Frente a la gasolinera diagonal cruz azul");
         ScreenshotUtils.addScreenshotToReport(driver, "ReferenciaFilled");
 
@@ -300,7 +300,7 @@ public class OnboardingTest extends BaseTest {
         monthlyIncomeField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js19 = (JavascriptExecutor) driver;
-        js19.executeScript("arguments[0].style.fontWeight = 'bold';", monthlyIncomeField);
+        js19.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", monthlyIncomeField);
                 
         monthlyIncomeField.sendKeys("2000");
         ScreenshotUtils.addScreenshotToReport(driver, "MonthlyIncomeFilled");
@@ -312,7 +312,7 @@ public class OnboardingTest extends BaseTest {
         monthlyExpensesField2.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js20 = (JavascriptExecutor) driver;
-        js20.executeScript("arguments[0].style.fontWeight = 'bold';", monthlyExpensesField2);
+        js20.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", monthlyExpensesField2);
         monthlyExpensesField2.sendKeys("840");
         ScreenshotUtils.addScreenshotToReport(driver, "GASTOS");
         Thread.sleep(4200);
@@ -322,7 +322,7 @@ public class OnboardingTest extends BaseTest {
         monthlyExpensesField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js21 = (JavascriptExecutor) driver;
-        js21.executeScript("arguments[0].style.fontWeight = 'bold';", monthlyExpensesField);
+        js21.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", monthlyExpensesField);
                 
         monthlyExpensesField.sendKeys("840");
         ScreenshotUtils.addScreenshotToReport(driver, "MonthlyExpensesFilled");
@@ -333,7 +333,7 @@ public class OnboardingTest extends BaseTest {
         savingsField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js22 = (JavascriptExecutor) driver;
-        js22.executeScript("arguments[0].style.fontWeight = 'bold';", savingsField);
+        js22.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", savingsField);
         savingsField.sendKeys("320");
         ScreenshotUtils.addScreenshotToReport(driver, "SavingsFilled");
         Thread.sleep(4200);
@@ -425,7 +425,6 @@ public class OnboardingTest extends BaseTest {
     }
 
 
-
     //falta código OTP
 
     private void ingresaTuCodigoOTP() throws InterruptedException {
@@ -438,7 +437,7 @@ public class OnboardingTest extends BaseTest {
         otpField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js23 = (JavascriptExecutor) driver;
-        js23.executeScript("arguments[0].style.fontWeight = 'bold';", otpField);      
+        js23.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", otpField);      
         otpField.sendKeys("192332");
         ScreenshotUtils.addScreenshotToReport(driver, "OTPFieldFilled");
         Thread.sleep(300000);
@@ -452,7 +451,7 @@ public class OnboardingTest extends BaseTest {
         WebElement obsElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='obs']")));
         obsElement.click();
         JavascriptExecutor js24 = (JavascriptExecutor) driver;
-        js24.executeScript("arguments[0].style.fontWeight = 'bold';", obsElement);
+        js24.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", obsElement);
         obsElement.sendKeys("Muy intuitivo");
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         ScreenshotUtils.addScreenshotToReport(driver, "ObsFieldFilled2");
@@ -462,5 +461,8 @@ public class OnboardingTest extends BaseTest {
         approveButton.click();
         Thread.sleep(222200);
         ScreenshotUtils.addScreenshotToReport(driver, "TarjetaGenerada");
+
+        // Esperar 5 minutos sin cerrar
+        Thread.sleep(300000);
     }
 }
