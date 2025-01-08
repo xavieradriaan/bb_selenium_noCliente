@@ -1,3 +1,4 @@
+//src/test/java/org/bancobolivariano/tests/LoginPageTest.java
 package org.bancobolivariano.tests;
 
 import org.bancobolivariano.listeners.ExtentReportListener;
@@ -22,7 +23,6 @@ public class LoginPageTest extends BaseTest {
         driver.get("https://tarjetacredito.dev.cuentafuturo.com");
         ScreenshotUtils.addScreenshotToReport(driver, "LoginPage");
 
-        // 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement startButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"__next\"]/main/div/div/div[2]/div/div[2]/div/button")));
         startButton.click();
@@ -34,7 +34,7 @@ public class LoginPageTest extends BaseTest {
         JavascriptExecutor js2 = (JavascriptExecutor) driver;
         js2.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", cedulaField);
 
-        cedulaField.sendKeys("1715122881");
+        cedulaField.sendKeys("1717433310"); //1717415408"
         ScreenshotUtils.addScreenshotToReport(driver, "CedulaFilled");
 
 

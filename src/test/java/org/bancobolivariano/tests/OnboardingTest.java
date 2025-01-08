@@ -1,3 +1,4 @@
+//src/test/java/org/bancobolivariano/tests/OnboardingTest.java
 package org.bancobolivariano.tests;
 
 import org.bancobolivariano.listeners.ExtentReportListener;
@@ -48,7 +49,7 @@ public class OnboardingTest extends BaseTest {
         }
     }
 
-
+   
     private void biometriaCedulaAnverso() throws InterruptedException {
         System.out.println("Haciendo clic en el botón de cédula anverso...");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -63,6 +64,7 @@ public class OnboardingTest extends BaseTest {
         System.out.println("Botón de éxito de biometría encontrado, continuando con la automatización...");
         biometriaSuccessButton.click();
     }
+
 
     private void ingresarDireccion() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Aumentar el tiempo de espera

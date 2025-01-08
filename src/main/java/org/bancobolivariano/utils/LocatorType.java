@@ -1,3 +1,4 @@
+
 package org.bancobolivariano.utils;
 
 public enum LocatorType {

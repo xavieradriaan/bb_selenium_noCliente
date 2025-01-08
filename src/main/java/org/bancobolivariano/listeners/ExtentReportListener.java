@@ -1,14 +1,22 @@
+// src/test/java/org/bancobolivariano/tests/ExtentReportTest.java
 package org.bancobolivariano.listeners;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.bancobolivariano.utils.ScreenshotUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ExtentReportListener implements ITestListener {
     private ExtentReports extent;
@@ -39,6 +47,16 @@ public class ExtentReportListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         test.log(Status.FAIL, "Test Failed: " + result.getThrowable());
+        // Capture screenshot on failure
+        if (driver != null) {
+            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            try {
+                Files.copy(screenshot.toPath(), Paths.get("target/screenshots", result.getMethod().getMethodName() + ".png"));
+                test.addScreenCaptureFromPath("screenshots/" + result.getMethod().getMethodName() + ".png");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -54,6 +72,4 @@ public class ExtentReportListener implements ITestListener {
     public static ExtentTest getTest() {
         return test;
     }
-
-
 }
