@@ -1,4 +1,3 @@
-//src/test/java/org/bancobolivariano/tests/LoginPageTest.java
 package org.bancobolivariano.tests;
 
 import org.bancobolivariano.listeners.ExtentReportListener;
@@ -19,42 +18,49 @@ import org.json.JSONObject;
 public class LoginPageTest extends BaseTest {
 
     @Test
-    public void logIn() {
+    public void openLoginPage() {
         driver.get("https://tarjetacredito.dev.cuentafuturo.com");
         ScreenshotUtils.addScreenshotToReport(driver, "LoginPage");
+    }
 
+    @Test(dependsOnMethods = "openLoginPage")
+    public void startLoginProcess() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement startButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"__next\"]/main/div/div/div[2]/div/div[2]/div/button")));
         startButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "LoginPage-Start");
+    }
 
-        // "cedula de indentidad"
+    @Test(dependsOnMethods = "startLoginProcess")
+    public void enterCedula() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement cedulaField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"cid\"]")));
-        // Aplicar formato en negrita y cursiva usando JavaScript antes de ingresar el texto
-        JavascriptExecutor js2 = (JavascriptExecutor) driver;
-        js2.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", cedulaField);
-
-        cedulaField.sendKeys("1717433310"); //1717415408"
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", cedulaField);
+        cedulaField.sendKeys("1717433310");
         ScreenshotUtils.addScreenshotToReport(driver, "CedulaFilled");
+    }
 
-
-        //      "código dactilar"
+    @Test(dependsOnMethods = "enterCedula")
+    public void enterCodigoDactilar() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement codigoDactilarField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"fingerPrint\"]")));
-        JavascriptExecutor js3 = (JavascriptExecutor) driver;
-        js3.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", codigoDactilarField);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", codigoDactilarField);
         codigoDactilarField.sendKeys("G2345K0923");
         ScreenshotUtils.addScreenshotToReport(driver, "CodigoDactilarFilled");
+    }
 
-        // Click on "Políticas de privacidad"
+    @Test(dependsOnMethods = "enterCodigoDactilar")
+    public void acceptPrivacyPolicy() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement politicasPrivacidadLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"terms-conditions\"]/div[1]/a")));
         politicasPrivacidadLink.click();
         ScreenshotUtils.addScreenshotToReport(driver, "PoliticasPrivacidadOpened");
 
-        // Scroll down 
-        WebDriverUtils.moveY(driver, 1000); // Adjust    value as needed
+        WebDriverUtils.moveY(driver, 1000);
         ScreenshotUtils.addScreenshotToReport(driver, "PoliticasPrivacidadScrolled");
 
-        // Exit    privacy policy
         WebElement submitButtonExit = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".lucide-x")));
         submitButtonExit.click();
         ScreenshotUtils.addScreenshotToReport(driver, "PoliticasPrivacidadClosed");
@@ -62,7 +68,11 @@ public class LoginPageTest extends BaseTest {
         WebElement checkbox = driver.findElement(By.xpath("//input[@type='checkbox']"));
         checkbox.click();
         ScreenshotUtils.addScreenshotToReport(driver, "CheckboxClicked");
+    }
 
+    @Test(dependsOnMethods = "acceptPrivacyPolicy")
+    public void submitLoginForm() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement button = driver.findElement(By.xpath("//button[@type='submit']"));
         button.click();
         ScreenshotUtils.addScreenshotToReport(driver, "BotonSubmit");
@@ -72,62 +82,54 @@ public class LoginPageTest extends BaseTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
 
-        // "teléfono"
+    @Test(dependsOnMethods = "submitLoginForm")
+    public void enterPhoneAndEmail() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='phone']")));
-
-        // Aplicar formato en negrita usando JavaScript
-        JavascriptExecutor js4 = (JavascriptExecutor) driver;
-        js4.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", phoneField);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", phoneField);
         phoneField.sendKeys("0911672178");
         ScreenshotUtils.addScreenshotToReport(driver, "PhoneFilled");
-        
-        //      "email"
+
         WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='email']")));
-        // Aplicar formato en negrita usando JavaScript 
-        JavascriptExecutor js5 = (JavascriptExecutor) driver;
-        js5.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", emailField);
+        js.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", emailField);
         emailField.sendKeys("xandrado@bolivariano.com");
         ScreenshotUtils.addScreenshotToReport(driver, "EmailFilled");
 
-        // Hacer clic en el botón de submit
         WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         submitButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "SubmitClicked");
 
-        // Esperar 1 segundo antes de acceder al siguiente botón
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-
-        // Hacer clic en el botón de submit adicional
         WebElement additionalSubmitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']")));
         additionalSubmitButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "AdditionalSubmitClicked");
 
-        // propuestaBoton
         WebElement propuestaBoton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"__next\"]/main/div/div[2]/div[2]/button[2]")));
         propuestaBoton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "PropuestaBotonClicked");
+    }
 
-        // Acceder al local storage y obtener el user_id desde mp_58d2baa53885911486cee97c5c3e78dc_mixpanel
+    @Test(dependsOnMethods = "enterPhoneAndEmail")
+    public void getUserIdFromLocalStorage() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        // Imprimir todo el contenido del localStorage
         String localStorageContent = (String) js.executeScript("return JSON.stringify(window.localStorage);");
         System.out.println("Local Storage Content: " + localStorageContent);
         Reporter.log("Local Storage Content: " + localStorageContent);
 
-        // Esperar 1 segundos antes de obtener el user_id
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Obtener el user_id desde mp_58d2baa53885911486cee97c5c3e78dc_mixpanel
         String mixpanelData = (String) js.executeScript("return window.localStorage.getItem('mp_58d2baa53885911486cee97c5c3e78dc_mixpanel');");
         if (mixpanelData != null) {
             JSONObject mixpanelJson = new JSONObject(mixpanelData);
@@ -138,8 +140,10 @@ public class LoginPageTest extends BaseTest {
             System.out.println("Mixpanel data not found in local storage.");
             Reporter.log("Mixpanel data not found in local storage.");
         }
+    }
 
-        // Continuar con el flujo de Onboarding
+    @Test(dependsOnMethods = "getUserIdFromLocalStorage")
+    public void completeOnboarding() {
         OnboardingTest onboardingTest = new OnboardingTest(driver);
         onboardingTest.completeOnboarding();
     }
