@@ -37,7 +37,7 @@ public class OnboardingTest extends BaseTest {
             eligeDondeRecibirTarjeta();
             cuentaDeAhorros();
             ingresaTuCodigoOTP();
-            //submitForm();
+            // submitForm();
         } catch (InterruptedException e) {
             System.out.println("Se produjo un error en completeOnboarding: " + e.getMessage());
             e.printStackTrace();
@@ -51,14 +51,25 @@ public class OnboardingTest extends BaseTest {
     public void biometriaCedulaAnverso() throws InterruptedException {
         System.out.println("Haciendo clic en el botón de cédula anverso...");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement cedulaAnversoButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnNext']")));
+        WebElement cedulaAnversoButton = wait
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnNext']")));
+
+        // Scroll to the bottom of the page
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        Thread.sleep(500); // Espera breve para asegurar que el scroll se complete
+
         cedulaAnversoButton.click();
         Thread.sleep(2200);
+
+        // Scroll to the bottom of the page
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        Thread.sleep(500); // Espera breve para asegurar que el scroll se complete
 
         // Esperar hasta que el botón de éxito de biometría esté presente y sea clicable
         System.out.println("Esperando para tomar fotos manualmente del anverso y reverso de la cédula...");
         WebDriverWait longWait = new WebDriverWait(driver, Duration.ofMinutes(5)); // Esperar hasta 5 minutos
-        WebElement biometriaSuccessButton = longWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"onb-btn-biometria-step-3-next\"]")));
+        WebElement biometriaSuccessButton = longWait
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"onb-btn-biometria-step-3-next\"]")));
         System.out.println("Botón de éxito de biometría encontrado, continuando con la automatización...");
         biometriaSuccessButton.click();
     }
@@ -67,45 +78,54 @@ public class OnboardingTest extends BaseTest {
     public void ingresarDireccion() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Aumentar el tiempo de espera
 
-        WebElement direccionField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#home-button-text")));
+        WebElement direccionField = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("#home-button-text")));
         direccionField.click();
-        WebElement direccionField2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
+        WebElement direccionField2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
+                ".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         direccionField2.click();
 
-        WebElement direccionField3 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".pac-target-input")));
+        WebElement direccionField3 = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".pac-target-input")));
         direccionField3.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js4 = (JavascriptExecutor) driver;
-        js4.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", direccionField3);
+        js4.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                direccionField3);
 
         direccionField3.sendKeys("Panama y Junin");
         Thread.sleep(5000);
         direccionField3.sendKeys(Keys.ARROW_DOWN);
         direccionField3.sendKeys(Keys.ENTER);
         Thread.sleep(5000);
-        //hasta aquí todo ok
-        WebElement direccionField4 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button___HYEkM.BBButton-module__bb-button--primary___2lC4N")));
+        // hasta aquí todo ok
+        WebElement direccionField4 = wait.until(ExpectedConditions.elementToBeClickable(
+                By.cssSelector(".BBButton-module__bb-button___HYEkM.BBButton-module__bb-button--primary___2lC4N")));
         direccionField4.click();
         ScreenshotUtils.addScreenshotToReport(driver, "DireccionFilled");
         Thread.sleep(2200);
 
         System.out.println("Haciendo clic en Calle Principal...");
-        WebElement mainStreetField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='firstAddress']")));
+        WebElement mainStreetField = wait
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='firstAddress']")));
         mainStreetField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js5 = (JavascriptExecutor) driver;
-        js5.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", mainStreetField);
+        js5.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                mainStreetField);
 
         mainStreetField.sendKeys("Panama");
         ScreenshotUtils.addScreenshotToReport(driver, "MainStreetFilled");
         Thread.sleep(2200);
 
         System.out.println("Haciendo clic en Calle Secundaria...");
-        WebElement secondaryStreetField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='secondaryAddress']")));
+        WebElement secondaryStreetField = wait
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='secondaryAddress']")));
         secondaryStreetField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js6 = (JavascriptExecutor) driver;
-        js6.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", secondaryStreetField);
+        js6.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                secondaryStreetField);
         secondaryStreetField.sendKeys("Junin");
         ScreenshotUtils.addScreenshotToReport(driver, "SecondaryStreetFilled");
 
@@ -113,11 +133,13 @@ public class OnboardingTest extends BaseTest {
         Thread.sleep(1000);
 
         System.out.println("Haciendo clic en el campo de número de casa...");
-        WebElement houseNumberField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='houseNumber']")));
+        WebElement houseNumberField = wait
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='houseNumber']")));
         houseNumberField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js7 = (JavascriptExecutor) driver;
-        js7.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", houseNumberField);
+        js7.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                houseNumberField);
 
         houseNumberField.sendKeys("Mz 118 etapa L V 1");
 
@@ -131,8 +153,10 @@ public class OnboardingTest extends BaseTest {
         referenceField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js8 = (JavascriptExecutor) driver;
-        js8.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", referenceField);
-        referenceField.sendKeys("\"Casa grande blanca “Las Garzas”, por la cancha joga bonito, sector mitad del mundo (-0.0030924, -78.4467336)\"");
+        js8.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                referenceField);
+        referenceField.sendKeys(
+                "\"Casa grande blanca “Las Garzas”, por la cancha joga bonito, sector mitad del mundo (-0.0030924, -78.4467336)\"");
         ScreenshotUtils.addScreenshotToReport(driver, "ReferenceFilled");
         Thread.sleep(2200);
 
@@ -152,19 +176,22 @@ public class OnboardingTest extends BaseTest {
         homeAgeField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js9 = (JavascriptExecutor) driver;
-        js9.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", homeAgeField);
+        js9.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                homeAgeField);
         homeAgeField.sendKeys("9");
         ScreenshotUtils.addScreenshotToReport(driver, "HomeAgeFilled");
         Thread.sleep(2200);
 
         System.out.println("Haciendo clic en el botón de continuar...");
-        WebElement primaryButtonN = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
+        WebElement primaryButtonN = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
+                ".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         primaryButtonN.click();
         ScreenshotUtils.addScreenshotToReport(driver, "BotonContinuar");
         Thread.sleep(2200);
 
         System.out.println("Haciendo clic en parentesco...");
-        WebElement parentesco = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".lucide-chevron-down")));
+        WebElement parentesco = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".lucide-chevron-down")));
         parentesco.click();
         Thread.sleep(2200);
 
@@ -176,25 +203,30 @@ public class OnboardingTest extends BaseTest {
         namesField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js10 = (JavascriptExecutor) driver;
-        js10.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", namesField);
+        js10.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                namesField);
         namesField.sendKeys("Xavier Adrián");
         ScreenshotUtils.addScreenshotToReport(driver, "NamesFilled");
         Thread.sleep(2200);
 
-        WebElement fatherLastNameField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#fatherLastName")));
+        WebElement fatherLastNameField = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("#fatherLastName")));
         fatherLastNameField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js11 = (JavascriptExecutor) driver;
-        js11.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", fatherLastNameField);
+        js11.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                fatherLastNameField);
         fatherLastNameField.sendKeys("Andrade");
         ScreenshotUtils.addScreenshotToReport(driver, "FatherLastNameFilled");
         Thread.sleep(2200);
 
-        WebElement motherLastNameField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#motherLastName")));
+        WebElement motherLastNameField = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("#motherLastName")));
         motherLastNameField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js12 = (JavascriptExecutor) driver;
-        js12.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", motherLastNameField);
+        js12.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                motherLastNameField);
         motherLastNameField.sendKeys("Ochoa");
         ScreenshotUtils.addScreenshotToReport(driver, "MotherLastNameFilled");
         Thread.sleep(2200);
@@ -202,241 +234,280 @@ public class OnboardingTest extends BaseTest {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
         Thread.sleep(1000);
 
-        WebElement phoneNumberField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#phoneNumber")));
+        WebElement phoneNumberField = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("#phoneNumber")));
         phoneNumberField.click();
         // Aplicar formato en negrita usando JavaScript antes de ingresar el texto
         JavascriptExecutor js13 = (JavascriptExecutor) driver;
-        js13.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", phoneNumberField);
+        js13.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                phoneNumberField);
         phoneNumberField.sendKeys("0996768532");
         ScreenshotUtils.addScreenshotToReport(driver, "PhoneNumberFilled");
         Thread.sleep(2200);
 
-        WebElement primaryButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
+        WebElement primaryButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
+                ".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         primaryButton2.click();
         Thread.sleep(2200);
         ScreenshotUtils.addScreenshotToReport(driver, "botonSsiguiente");
     }
+
     @Test(dependsOnMethods = "ingresarDireccion")
     public void ingresarDatosLaborales() throws InterruptedException {
         System.out.println("Iniciando sección: Completa tus datos laborales");
-    
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement trabajadorIndependiente = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Soy trabajador independiente']")));
+        WebElement trabajadorIndependiente = wait.until(ExpectedConditions
+                .elementToBeClickable(By.xpath("//span[normalize-space()='Soy trabajador independiente']")));
         trabajadorIndependiente.click();
         Thread.sleep(2200);
-    
+
         WebElement direccionField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#city")));
         direccionField.click();
-        WebElement direccionField2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
+        WebElement direccionField2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
+                ".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         direccionField2.click();
-        WebElement direccionField3 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".pac-target-input")));
+        WebElement direccionField3 = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".pac-target-input")));
         direccionField3.click();
         JavascriptExecutor js16 = (JavascriptExecutor) driver;
-        js16.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", direccionField3);
-    
+        js16.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                direccionField3);
+
         direccionField3.sendKeys("Sauces 4");
         Thread.sleep(2200);
         direccionField3.sendKeys(Keys.ARROW_DOWN);
         direccionField3.sendKeys(Keys.ENTER);
         Thread.sleep(4200);
-    
-        WebElement direccioncontinuar = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
+
+        WebElement direccioncontinuar = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
+                ".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         direccioncontinuar.click();
         ScreenshotUtils.addScreenshotToReport(driver, "DireccionFilled");
         Thread.sleep(2200);
-    
-        WebElement calleprincipal = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='mainStreet']")));
+
+        WebElement calleprincipal = wait
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='mainStreet']")));
         calleprincipal.click();
         JavascriptExecutor js17 = (JavascriptExecutor) driver;
-        js17.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", calleprincipal);
-    
+        js17.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                calleprincipal);
+
         calleprincipal.sendKeys("Sauces 4");
         ScreenshotUtils.addScreenshotToReport(driver, "CallePrincipalFilled");
-    
-        WebElement callesecundaria = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#secondaryStreet")));
+
+        WebElement callesecundaria = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("#secondaryStreet")));
         callesecundaria.click();
         JavascriptExecutor js18 = (JavascriptExecutor) driver;
-        js18.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", callesecundaria);
+        js18.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                callesecundaria);
         callesecundaria.sendKeys("G. Plaza D");
         ScreenshotUtils.addScreenshotToReport(driver, "CalleSecundariaFilled");
-    
-        WebElement numeroOficina = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='officeNumber']")));
+
+        WebElement numeroOficina = wait
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='officeNumber']")));
         numeroOficina.click();
         JavascriptExecutor js19 = (JavascriptExecutor) driver;
-        js19.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", numeroOficina);
+        js19.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                numeroOficina);
         numeroOficina.sendKeys(" Numero 22-56");
         ScreenshotUtils.addScreenshotToReport(driver, "NumeroOficinaFilled");
-    
-        WebElement referencia = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//textarea[@id='jobAddressReference']")));
+
+        WebElement referencia = wait
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//textarea[@id='jobAddressReference']")));
         referencia.click();
         JavascriptExecutor js20 = (JavascriptExecutor) driver;
-        js20.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", referencia);
+        js20.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                referencia);
         referencia.sendKeys("Frente a la gasolinera diagonal cruz azul");
         ScreenshotUtils.addScreenshotToReport(driver, "ReferenciaFilled");
-    
-        WebElement button0 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
+
+        WebElement button0 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
+                ".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         button0.click();
         System.out.println("Clic realizado en el botón de submit");
         Thread.sleep(2200);
     }
-    
+
     @Test(dependsOnMethods = "ingresarDatosLaborales")
     public void ingresarSituacionEconomica() throws InterruptedException {
         System.out.println("Iniciando sección: Ingresa tu situación económica");
-    
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement monthlyIncomeField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='monthlyIncome']")));
+        WebElement monthlyIncomeField = wait
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='monthlyIncome']")));
         monthlyIncomeField.click();
         JavascriptExecutor js19 = (JavascriptExecutor) driver;
-        js19.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", monthlyIncomeField);
-    
+        js19.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                monthlyIncomeField);
+
         monthlyIncomeField.sendKeys("2000");
         ScreenshotUtils.addScreenshotToReport(driver, "MonthlyIncomeFilled");
         Thread.sleep(4200);
-    
-        WebElement monthlyExpensesField2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='expenses']")));
+
+        WebElement monthlyExpensesField2 = wait
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='expenses']")));
         monthlyExpensesField2.click();
         JavascriptExecutor js20 = (JavascriptExecutor) driver;
-        js20.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", monthlyExpensesField2);
+        js20.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                monthlyExpensesField2);
         monthlyExpensesField2.sendKeys("840");
         ScreenshotUtils.addScreenshotToReport(driver, "GASTOS");
         Thread.sleep(4200);
-    
-        WebElement monthlyExpensesField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#assets > input")));
+
+        WebElement monthlyExpensesField = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("#assets > input")));
         monthlyExpensesField.click();
         JavascriptExecutor js21 = (JavascriptExecutor) driver;
-        js21.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", monthlyExpensesField);
-    
+        js21.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                monthlyExpensesField);
+
         monthlyExpensesField.sendKeys("840");
         ScreenshotUtils.addScreenshotToReport(driver, "MonthlyExpensesFilled");
         Thread.sleep(6200);
-    
-        WebElement savingsField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#liabilities > input")));
+
+        WebElement savingsField = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("#liabilities > input")));
         savingsField.click();
         JavascriptExecutor js22 = (JavascriptExecutor) driver;
-        js22.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", savingsField);
+        js22.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                savingsField);
         savingsField.sendKeys("320");
         ScreenshotUtils.addScreenshotToReport(driver, "SavingsFilled");
         Thread.sleep(4200);
-    
+
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
         Thread.sleep(1000);
-    
-        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+
+        WebElement submitButton = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
         submitButton.click();
         Thread.sleep(2200);
-    
+
         confirmarResidenciaFiscal();
     }
-    
+
     @Test(dependsOnMethods = "ingresarSituacionEconomica")
     public void confirmarResidenciaFiscal() throws InterruptedException {
         System.out.println("Iniciando sección: Confirma tu residencia fiscal");
-    
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='__next']/main/div/div[2]/div[2]/button[2]/div")));
+        WebElement submitButton = wait.until(ExpectedConditions
+                .elementToBeClickable(By.xpath("//div[@id='__next']/main/div/div[2]/div[2]/button[2]/div")));
         submitButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "ResidenciaFiscalFilled");
         Thread.sleep(2200);
     }
-    
+
     @Test(dependsOnMethods = "confirmarResidenciaFiscal")
     public void eligeDondeRecibirTarjeta() throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
         Thread.sleep(1000);
-    
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
+                ".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         submitButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "DondeRecibirTarjetaFilled");
         Thread.sleep(2200);
-    
+
         confirmaSolicitud();
     }
-    
+
     @Test(dependsOnMethods = "eligeDondeRecibirTarjeta")
     public void confirmaSolicitud() throws InterruptedException {
         System.out.println("Iniciando sección: Confirma tu solicitud");
-    
+
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
         Thread.sleep(1000);
-    
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
+                ".BBButton-module__bb-button--primary___2lC4N > .BBButton-module__button__label___-dURf")));
         submitButton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "ConfirmaSolicitudFilled");
         Thread.sleep(2200);
-    
-        WebElement emisionUsoTarjeta = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Emisión y uso de tarjeta']")));
+
+        WebElement emisionUsoTarjeta = wait.until(ExpectedConditions
+                .elementToBeClickable(By.xpath("//span[normalize-space()='Emisión y uso de tarjeta']")));
         emisionUsoTarjeta.click();
         Thread.sleep(2200);
-    
-        WebElement primerTab = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Términos del plan Fast Point']")));
+
+        WebElement primerTab = wait.until(ExpectedConditions
+                .elementToBeClickable(By.xpath("//span[normalize-space()='Términos del plan Fast Point']")));
         primerTab.click();
         Thread.sleep(2200);
-    
-        WebElement segundoTab = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Tarifas de servicios']")));
+
+        WebElement segundoTab = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Tarifas de servicios']")));
         segundoTab.click();
         ScreenshotUtils.addScreenshotToReport(driver, "TarifasDeServicios");
         Thread.sleep(2200);
-    
+
         WebElement checkbox88 = driver.findElement(By.xpath("//input[@type='checkbox']"));
         checkbox88.click();
         Thread.sleep(2200);
-    
-        WebElement boton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='ContractsRender_bb-summary-contracts__main__container__button__container__wWIAI'] div:nth-child(2) button:nth-child(1)")));
+
+        WebElement boton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
+                "div[class='ContractsRender_bb-summary-contracts__main__container__button__container__wWIAI'] div:nth-child(2) button:nth-child(1)")));
         boton.click();
         ScreenshotUtils.addScreenshotToReport(driver, "TarifaServiciosFilled");
         Thread.sleep(2200);
     }
-    
+
     @Test(dependsOnMethods = "confirmaSolicitud")
     public void cuentaDeAhorros() throws InterruptedException {
         System.out.println("Iniciando sección: Cuenta de ahorros");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    
-        WebElement checkboxElement10 = driver.findElement(By.xpath("//div[@id='__next']/main/div/section/section/div/div/input"));
+
+        WebElement checkboxElement10 = driver
+                .findElement(By.xpath("//div[@id='__next']/main/div/section/section/div/div/input"));
         checkboxElement10.click();
         Thread.sleep(2200);
         ScreenshotUtils.addScreenshotToReport(driver, "CheckboxClicked");
-    
-        WebElement continueButtonElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#btn-continue > .BBButton-module__button__label___-dURf")));
+
+        WebElement continueButtonElement = wait.until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("#btn-continue > .BBButton-module__button__label___-dURf")));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueButtonElement);
         ScreenshotUtils.addScreenshotToReport(driver, "ContinueButtonClicked");
     }
-    
+
     @Test(dependsOnMethods = "cuentaDeAhorros")
     public void ingresaTuCodigoOTP() throws InterruptedException {
         Thread.sleep(16000);
         System.out.println("Iniciando sección: Ingresa tu código OTP");
-    
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement otpField = wait.until(ExpectedConditions.elementToBeClickable(By.id("input0")));
         otpField.click();
         JavascriptExecutor js23 = (JavascriptExecutor) driver;
-        js23.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", otpField);
+        js23.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                otpField);
         otpField.sendKeys("192332");
         ScreenshotUtils.addScreenshotToReport(driver, "OTPFieldFilled");
         Thread.sleep(300000);
-    
+
         WebElement imgElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("img:nth-child(4)")));
         imgElement.click();
         ScreenshotUtils.addScreenshotToReport(driver, "imagenClicked33");
         Thread.sleep(6400);
-    
+
         WebElement obsElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='obs']")));
         obsElement.click();
         JavascriptExecutor js24 = (JavascriptExecutor) driver;
-        js24.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';", obsElement);
+        js24.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
+                obsElement);
         obsElement.sendKeys("Muy intuitivo");
         ScreenshotUtils.addScreenshotToReport(driver, "ObsFieldFilled2");
         Thread.sleep(3200);
-    
-        WebElement approveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".Qualification_btnApprove__m0iEu")));
+
+        WebElement approveButton = wait
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".Qualification_btnApprove__m0iEu")));
         approveButton.click();
         Thread.sleep(222200);
         ScreenshotUtils.addScreenshotToReport(driver, "TarjetaGenerada");
-    
+
         Thread.sleep(300000);
     }
-    }
+}
