@@ -40,7 +40,7 @@ public class LoginPageTest extends BaseTest {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].style.fontWeight = 'bold'; arguments[0].style.fontStyle = 'italic';",
                 cedulaField);
-        cedulaField.sendKeys("1717433310");
+        cedulaField.sendKeys("1713802559");
         ScreenshotUtils.addScreenshotToReport(driver, "CedulaFilled");
     }
 
@@ -125,7 +125,7 @@ public class LoginPageTest extends BaseTest {
         ScreenshotUtils.addScreenshotToReport(driver, "AdditionalSubmitClicked");
 
         WebElement propuestaBoton = wait.until(ExpectedConditions
-                .elementToBeClickable(By.xpath("//*[@id=\"__next\"]/main/div/div[2]/div[2]/button[2]")));
+            .elementToBeClickable(By.xpath("//button[@class='BBButton-module__bb-button___HYEkM BBButton-module__bb-button--primary___2lC4N']")));
         // Scroll to the bottom of the page
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
